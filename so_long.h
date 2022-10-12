@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 21:32:48 by rlouvrie          #+#    #+#             */
-/*   Updated: 2022/10/11 22:23:38 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:38:02 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,9 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
+int		error(int n);
+int		filename_checker(char *filename);
+int		map_checker(int fd);
+void	clean_malloc(char **tab);
+void	so_long(int fd);
 #endif
