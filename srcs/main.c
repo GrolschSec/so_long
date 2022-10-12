@@ -6,20 +6,21 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 21:32:45 by rlouvrie          #+#    #+#             */
-/*   Updated: 2022/10/12 14:00:57 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2022/10/12 19:19:12 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 void	so_long(int fd)
 {
-	void	*mlx;
-	void	*mlx_win;
+	t_vars	vars;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	mlx_loop(mlx);
+	(void) fd;
+	vars.mlx = mlx_init();
+	vars.win = mlx_new_window(vars.mlx, 200, 180, "So Long");
+	mlx_hook(vars.win, 2, X_KEY_EVENT_MASK, window_key_events, &vars);
+	mlx_loop(vars.mlx);
 }
 
 int	main(int argc, char **argv)
