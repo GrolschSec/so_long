@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 21:32:45 by rlouvrie          #+#    #+#             */
-/*   Updated: 2022/10/12 13:38:44 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:00:57 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 void	so_long(int fd)
 {
-	return ;
+	void	*mlx;
+	void	*mlx_win;
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_loop(mlx);
 }
 
 int	main(int argc, char **argv)
