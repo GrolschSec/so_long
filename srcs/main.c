@@ -38,3 +38,13 @@ int	main(int argc, char **argv)
 	close(fd);
 	return (0);
 }
+
+
+// Erreur nombre d'argument
+// Malloc structure game
+// extension fichier
+// mlx_init
+// ouverture de fichier, lecture de map: get_next_line, open, close
+// Check si la map est rectangle et la validiter des characteres
+// Verifier si les xpm existe mlx_new_window, mlx_xpm_file_to_image
+// Exit correctement mlx_destroy window, mlx_destroy_display + free(), mlx_destroy_image()
