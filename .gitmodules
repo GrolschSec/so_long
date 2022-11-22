@@ -4,3 +4,9 @@
 [submodule "ft"]
 	path = ft
 	url = https://github.com/GrolschSec/Libft
+[submodule "get_next_line"]
+	path = get_next_line
+	url = ./get_next_line/
+[submodule "gnl"]
+	path = gnl
+	url = ./gnl
