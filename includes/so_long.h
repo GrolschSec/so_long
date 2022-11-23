@@ -16,21 +16,10 @@
 # include "../mlx/mlx_int.h"
 # include "../ft/libft.h"
 # include "../gnl/get_next_line.h"
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# define ESC 65307
-# define X_KEY_EVENT_MASK (1L<<0)
 
-typedef struct s_vars
-{
-	void	*mlx;
-	void	*win;
-}				t_vars;
-int		error(int n);
+
 int		filename_checker(char *filename);
-int		map_checker(int fd);
-int		window_key_events(int keycode, t_vars *vars);
+char	**map_checker(int fd);
+char	**load_map(int fd);
 void	clean_malloc(char **tab);
-void	so_long(int fd);
 #endif

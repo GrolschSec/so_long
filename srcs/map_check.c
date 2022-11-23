@@ -37,6 +37,60 @@ int	filename_checker(char *filename)
 	return (clean_malloc(filename_splited), 0);
 }
 
+
+char	**load_map(int fd)
+{
+	char	**map;
+	char	*str;
+	char	*nl;
+	char	*swap;
+	int		y;
+
+	y = 0;
+	str = malloc(sizeof(char));
+	if (!str)
+		return (NULL);
+	str[0] = '\0';
+	swap = NULL;
+	while (1)
+	{
+		nl = NULL;
+		nl = get_next_line(fd);
+		if (!nl)
+			break;
+		y++;
+		swap = ft_strjoin(str, nl);
+		free(str);
+		free(nl);
+		str = NULL;
+		str = swap;
+	}
+	if (y == 0)
+		return (free(str), NULL);
+	map = ft_split(str, '\n');
+	free(str);
+	return (map);
+}
+
+char	**map_checker(int fd)
+{
+	char	**map;
+
+	if (fd < 0)
+		return (NULL);
+	map = load_map(fd);
+	if (!map)
+		return (NULL);
+	return (map);
+}
+
+
+
+
+
+
+// Dabord verifier le fichier
+
 // On cree et initialise a 0 une variable line_y
 // Si fd < 0
 	// Alors on return code error.

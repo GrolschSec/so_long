@@ -12,31 +12,33 @@
 
 #include "../includes/so_long.h"
 
-void	so_long(int fd)
-{
-	t_vars	vars;
 
-	(void) fd;
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 200, 180, "So Long");
-	mlx_hook(vars.win, 2, X_KEY_EVENT_MASK, window_key_events, &vars);
-	mlx_loop(vars.mlx);
+void	ft_printmap(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		printf("%s\n", map[i++]);
 }
 
 int	main(int argc, char **argv)
 {
 	int		fd;
+	char	**map;
 
 	if (argc != 2)
-		return (error(1));
+		return (ft_putstr_fd("Error", 1), 1);
 	if (filename_checker(argv[1]) != 0)
-		return (error(2));
+		return (ft_putstr_fd("Error", 1), 1);
 	fd = open(argv[1], O_RDONLY);
-	if (map_checker(fd) != 0)
-		return (error(3));
-	so_long(fd);
-	close(fd);
-	return (0);
+	map = NULL;
+	map = map_checker(fd);
+	if (!map)
+		return (ft_putstr_fd("Error", 1), 1);
+	ft_printmap(map);
+	//so_long(fd);
+	return (clean_malloc(map), close(fd), 0);
 }
 
 

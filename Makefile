@@ -2,11 +2,10 @@ NAME = so_long
 
 SRC	= main.c \
 	map_check.c \
-	window.c \
 
 DIR 		= ${addprefix srcs/,${SRC}}
 
-HEAD		= -I ft -I include -I mlx
+HEAD		= -I ft -I include -I mlx -I gnl
 
 CC 			= gcc
 
@@ -14,15 +13,16 @@ CFLAGS 		= -Wall -Wextra -Werror -g
 
 OBJS 		= ${DIR:.c=.o}
 
-LD_FLAG		= -L ft -L mlx
+LD_FLAG		= -L ft -L mlx -L gnl
 
-MLX_FLAG	= -lm -lmlx -lXext -lX11 -lft
+MLX_FLAG	= -lm -lmlx -lXext -lX11 -lft -lgnl
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C ft
 	make -C mlx
+	make -C gnl
 	$(CC) $(CFLAGS) $(LD_FLAG) $(OBJS) -o $(NAME) $(MLX_FLAG)
 
 .c.o:
@@ -31,10 +31,12 @@ $(NAME): $(OBJS)
 clean:
 	make clean -C ft
 	make clean -C mlx
+	make clean -C gnl
 	rm -f $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
-	make fclean -C ft 
+	make fclean -C ft
+	make fclean -C gnl
 	rm -f $(NAME)
 
 re: fclean all
