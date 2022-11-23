@@ -72,20 +72,59 @@ char	**load_map(int fd)
 	return (map);
 }
 
+int	len_y(char **map)
+{
+	int i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
 char	**map_checker(int fd)
 {
 	char	**map;
+	int		y;
+	int		i;
+	int		j;
+	int		len;
+
 
 	if (fd < 0)
 		return (NULL);
 	map = load_map(fd);
 	if (!map)
 		return (NULL);
+	y = len_y(map);
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		len = ft_strlen(map[i]);
+		while (map[i][j])
+		{
+			if ((i == y - 1 || i == 0) && map[i][j] != '1')
+				return (clean_malloc(map), NULL);
+			else if (map[i][0] != '1' || map[i][len - 1] != '1')
+				return (clean_malloc(map), NULL);
+			else if (y == len)
+				return (clean_malloc(map), NULL);
+			else if (map[i][j] == '0' || map[i][j] == '1' || map[i][j] == 'C' || map[i][j] == 'E' || map[i][j] == 'P')
+				j++;
+		}
+		i++;
+	}
 	return (map);
 }
 
 
 
+
+// Tant que map[i]
+// calcule len y
+// pour chaque ligne
+	// Si i = 0
 
 
 
