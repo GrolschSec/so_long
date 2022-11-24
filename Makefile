@@ -1,7 +1,9 @@
 NAME = so_long
 
 SRC	= main.c \
-	map_check.c \
+	map.c \
+	map2.c \
+	solve_map.c \
 
 DIR 		= ${addprefix srcs/,${SRC}}
 
@@ -32,7 +34,7 @@ clean:
 	make clean -C ft
 	make clean -C mlx
 	make clean -C gnl
-	rm -f $(OBJS) $(OBJS_BONUS)
+	rm -f $(OBJS)
 
 fclean: clean
 	make fclean -C ft
