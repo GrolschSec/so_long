@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 21:32:45 by rlouvrie          #+#    #+#             */
-/*   Updated: 2022/11/24 06:14:07 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:17:36 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main(int argc, char **argv)
 	if (!map)
 		return (ft_putstr_fd("Error", 1), 1);
 	counter = count_cep(map);
-	if (solve_map(map, counter) != 0)
-		return (clean_malloc(map), close(fd), ft_putstr_fd("Error", 1), 1);
+	printf("%d", counter.c);
 	return (clean_malloc(map), close(fd), 0);
 }

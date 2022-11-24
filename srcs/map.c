@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:37:17 by rlouvrie          #+#    #+#             */
-/*   Updated: 2022/11/24 05:23:02 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:14:13 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ int	filename_checker(char *filename)
 	return (clean_malloc(filename_splited), 0);
 }
 
-char	**load_map(int fd)
+char	*map_to_str(int fd)
 {
-	char	**map;
 	char	*str;
 	char	*nl;
 	char	*swap;
@@ -51,8 +50,21 @@ char	**load_map(int fd)
 	}
 	if (y == 0)
 		return (NULL);
+	return (str);
+}
+
+char	**load_map(int fd)
+{
+	char	**map;
+	char	*str;
+
+	str = map_to_str(fd);
+	if (!str)
+		return (NULL);
 	map = ft_split(str, '\n');
 	free(str);
+	if (!map)
+		return (NULL);
 	return (map);
 }
 

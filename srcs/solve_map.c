@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 04:36:18 by rlouvrie          #+#    #+#             */
-/*   Updated: 2022/11/24 06:16:37 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2022/11/24 16:46:02 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_cep	count_cep(char **map)
 	return (counter);
 }
 
-int	solve_map(char **map, t_cep counter)
+/*int	solve_map(char **map, t_cep counter)
 {
 	return (0);
-}
+}*/
