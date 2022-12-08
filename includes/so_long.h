@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 21:32:48 by rlouvrie          #+#    #+#             */
-/*   Updated: 2022/11/24 06:10:34 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2022/12/08 03:47:46 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ typedef struct s_cep {
 	int	e;
 	int	p;
 }		t_cep;
+
+typedef struct s_pos {
+	int	x;
+	int	y;
+}		t_pos;
+
 // main.c
 // map.c
 int		filename_checker(char *filename);
@@ -35,6 +41,11 @@ size_t	len_tab(char **map);
 t_cep	collectible(char c, t_cep counter);
 void	clean_malloc(char **tab);
 // solve_map.c
-t_cep	count_cep(char **map);
-int		solve_map(char **map, t_cep counter);
+int		check_cep(char **map);
+int		solve_map(char **map, int **tab, int c, t_pos pos);
+int		**make_tab(int c);
+void	free_tab_int(int **tab, int c);
+int		solve(int collectible, char **map);
+// solve_map2.c
+t_pos	begin_pos(char **map);
 #endif
