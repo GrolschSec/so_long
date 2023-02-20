@@ -6,9 +6,13 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 16:16:47 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/20 16:40:30 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/20 21:06:10 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+int	solve_map(t_game *game)
+{
+	return (0);
+}

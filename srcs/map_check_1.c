@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 09:03:20 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/20 20:55:08 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/20 21:07:05 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ t_game	*validate_map(char **map)
 	if (verify_map_walls(game) != 0)
 		return (free_game(game), NULL);
 	if (verify_map_objects(game) != 0)
+		return (free_game(game), NULL);
+	if (solve_map(game) != 0)
 		return (free_game(game), NULL);
 	return (game);
 }

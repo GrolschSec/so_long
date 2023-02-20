@@ -5,6 +5,7 @@ SRC	= main.c \
 	map_check_1.c \
 	map_check_2.c \
 	map_check_3.c \
+	map_check_4.c \
 
 DIR 		= ${addprefix srcs/,${SRC}}
 
