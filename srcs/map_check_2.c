@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 10:24:45 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/20 12:35:06 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/20 19:08:10 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	**read_map(int fd)
 	return (map);
 }
 
-int	is_rectangular(char **map)
+int	is_rectangular(t_game *game)
 {
 	int	rows;
 	int	cols;
@@ -63,37 +63,39 @@ int	is_rectangular(char **map)
 	int	row_len;
 
 	rows = 0;
-	while (map[rows])
+	while (game->map[rows])
 		rows++;
 	i = -1;
-	while (map[0][++i])
+	while (game->map[0][++i])
 		cols = i + 1;
 	j = 0;
-	while (map[++j])
+	while (game->map[++j])
 	{
 		row_len = -1;
-		while (map[j][++row_len])
+		while (game->map[j][++row_len])
 			;
 		if (row_len != cols)
 			return (1);
 	}
+	game->rows = rows;
+	game->cols = cols;
 	return (0);
 }
 
-int	verify_map_chars(char **map)
+int	verify_map_chars(t_game *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (map[i])
+	while (game->map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (game->map[i][j])
 		{
-			if (map[i][j] != '1' && map[i][j] != '0'
-				&& map[i][j] != 'C' && map[i][j] != 'E'
-				&& map[i][j] != 'P')
+			if (game->map[i][j] != '1' && game->map[i][j] != '0'
+				&& game->map[i][j] != 'C' && game->map[i][j] != 'E'
+				&& game->map[i][j] != 'P')
 				return (1);
 			j++;
 		}
@@ -102,26 +104,21 @@ int	verify_map_chars(char **map)
 	return (0);
 }
 
-int	verify_map_walls(char **map)
+int	verify_map_walls(t_game *game)
 {
 	int	rows;
 	int	cols;
 	int	i;
 
-	rows = 0;
-	while (map[rows])
-		rows++;
-	i = -1;
-	while (map[0][++i])
-		;
-	cols = i;
+	rows = game->rows;
+	cols = game->cols;
 	i = 0;
-	while (i < cols && map[0][i] == '1' && map[rows - 1][i] == '1')
+	while (i < cols && game->map[0][i] == '1' && game->map[rows - 1][i] == '1')
 		i++;
 	if (i < cols)
 		return (1);
 	i = 0;
-	while (i < rows && map[i][0] == '1' && map[i][cols - 1] == '1')
+	while (i < rows && game->map[i][0] == '1' && game->map[i][cols - 1] == '1')
 		i++;
 	if (i < rows)
 		return (1);

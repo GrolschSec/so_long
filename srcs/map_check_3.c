@@ -6,11 +6,29 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:48:55 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/20 14:05:04 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:20:54 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	count_map_objects(char **map, char c)
+#include "../includes/so_long.h"
+
+void	fill_game_objects(t_game *game, int row, int col, char c)
+{
+	if (c == 'P')
+		game->start = (t_point){ .row = row, .col = col };
+	else if (c == 'E')
+		game->end = (t_point){ .row = row, .col = col };
+	else
+	{
+		if (game->collectible == 0)
+			add_node(NULL, row, col, 0);
+		else
+			add_node(game->collect, row, col, 0);
+		game->collectible++;
+	}
+}
+
+int	count_map_objects(t_game *game, char c)
 {
 	int	count;
 	int	i;
@@ -18,30 +36,37 @@ int	count_map_objects(char **map, char c)
 
 	i = 0;
 	count = 0;
-	while (map[i])
+	while (game->map[i])
 	{
 		j = 0;
-		while (map[i][j])
-			if (map[i][j++] == c)
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == c)
+			{
+				fill_game_objects(game, i, j, c);
 				count++;
+			}
+			j++;
+		}
 		i++;
 	}
 	return (count);
 }
 
-int	verify_map_objects(char **map)
+int	verify_map_objects(t_game *game)
 {
 	int	p;
 	int	e;
 	int	c;
 
-	p = count_map_objects(map, 'P');
+	game->collectible = 0;
+	p = count_map_objects(game, 'P');
 	if (p != 1)
 		return (1);
-	e = count_map_objects(map, 'E');
+	e = count_map_objects(game, 'E');
 	if (e != 1)
 		return (1);
-	c = count_map_objects(map, 'C');
+	c = count_map_objects(game, 'C');
 	if (c < 1)
 		return (1);
 	return (0);

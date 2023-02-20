@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 09:03:20 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/20 14:02:02 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/20 19:17:48 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,43 @@ char	**load_map(char	*filename)
 	return (close(fd), map);
 }
 
-int	validate_map(char **map)
+void	free_game(t_game *game)
 {
-	if (is_rectangular(map) != 0)
-		return (ft_free_tab(map), 1);
-	if (verify_map_chars(map) != 0)
-		return (ft_free_tab(map), 2);
-	if (verify_map_walls(map) != 0)
-		return (ft_free_tab(map), 3);
-	if (verify_map_objects(map) != 0)
-		return (ft_free_tab(map), 4);
-	return (0);
+	t_collect *tmp;
+	
+	if (!game)
+		return ;
+	if (game->map)
+		ft_free_tab(game->map);
+	if (game->collect)
+	{
+		while (game->collect)
+		{
+			tmp = game->collect;
+			game->collect = game->collect->next;
+			free(tmp);
+			tmp = NULL;
+		}
+	}
+	free(game);
+}
+
+t_game	*validate_map(char **map)
+{
+	t_game	*game;
+	
+	game = (t_game *)malloc(sizeof(t_game));
+	if (!game)
+		return (ft_free_tab(map), NULL);
+	game->map = map;
+	game->collect = NULL;
+	if (is_rectangular(game) != 0)
+		return (free_game(game), NULL);
+	if (verify_map_chars(game) != 0)
+		return (free_game(game), NULL);
+	if (verify_map_walls(game) != 0)
+		return (free_game(game), NULL);
+	if (verify_map_objects(game) != 0)
+		return (free_game(game), NULL);
+	return (game);
 }
