@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:48:55 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/20 20:45:00 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:56:06 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	fill_game_objects(t_game *game, int row, int col, char c)
 {
 	if (c == 'P')
-		game->start = (t_point){ .row = row, .col = col };
+		game->start = (t_point){.row = row, .col = col};
 	else if (c == 'E')
-		game->end = (t_point){ .row = row, .col = col };
+		game->end = (t_point){.row = row, .col = col};
 	else
 	{
 		if (game->collectible == 0)
