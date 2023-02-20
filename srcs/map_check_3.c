@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:48:55 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/20 20:20:54 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:45:00 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	fill_game_objects(t_game *game, int row, int col, char c)
 	else
 	{
 		if (game->collectible == 0)
-			add_node(NULL, row, col, 0);
+			add_node(NULL, row, col, game);
 		else
-			add_node(game->collect, row, col, 0);
+			add_node(game->collect, row, col, game);
 		game->collectible++;
 	}
 }
