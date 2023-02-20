@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 09:03:20 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/20 19:17:48 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:55:08 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ char	**load_map(char	*filename)
 
 void	free_game(t_game *game)
 {
-	t_collect *tmp;
-	
+	t_collect	*tmp;
+
 	if (!game)
 		return ;
 	if (game->map)
@@ -91,7 +91,7 @@ void	free_game(t_game *game)
 t_game	*validate_map(char **map)
 {
 	t_game	*game;
-	
+
 	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)
 		return (ft_free_tab(map), NULL);
