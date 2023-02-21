@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:24:11 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/20 21:05:54 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:10:16 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ int				verify_map_objects(t_game *game);
 void			fill_game_objects(t_game *game, int row, int col, char c);
 // map_check_4.c
 int				solve_map(t_game *game);
+int				is_valid_path(t_game *game, int row, int col);
+int				copy_map(t_game *game, t_game *copy_game);
+t_game			*copy_game(t_game *game);
 // chained.c
 void			add_node(t_collect *head, int row, int col, t_game *game);
+void			copy_collect(t_collect *head, t_game *game);
 #endif

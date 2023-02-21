@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 09:03:20 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/20 21:07:05 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:32:46 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,21 @@ int	filename_check(char *filename)
 	return (result);
 }
 
-void	ft_free_tab(char **tab)
+void ft_free_tab(char **tab)
 {
-	int	i;
-
+	int i;
+	
 	i = 0;
-	while (tab[i])
+    if (!tab)
+		return;
+    while (tab[i]) 
 	{
 		free(tab[i]);
 		tab[i] = NULL;
 		i++;
 	}
-	free(tab);
-	tab = NULL;
+    free(tab);
+    tab = NULL;
 }
 
 char	**load_map(char	*filename)
@@ -71,6 +73,7 @@ void	free_game(t_game *game)
 {
 	t_collect	*tmp;
 
+	tmp = NULL;
 	if (!game)
 		return ;
 	if (game->map)
