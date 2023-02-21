@@ -6,34 +6,27 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 16:16:47 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/21 19:05:23 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:08:43 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	is_valid_path(t_game *game, int row, int col)
+void	is_valid_path(t_game *game, int row, int col)
 {
-	if (row < 0 || row >= game->rows || col < 0 || col >= game->cols)
-		return (1);
-	if (game->map[row][col] == '1')
-		return (1);
-	if (game->map[row][col] == 'C')
+	if (game->map[row][col] == '1' || game->map[row][col] == '2')
+		return ;
+	if (game->map[row][col] == 'C' || game->map[row][col] == '0'
+		|| game->map[row][col] == 'E')
 	{
+		if (game->map[row][col] == 'C')
+			set_visited(game->collect, row, col);
 		game->map[row][col] = '2';
-		game->collectible--;
 	}
-	if (game->map[row][col] == 'E' && game->collectible == 0)
-		return (0);
-	if (is_valid_path(game, row - 1, col) == 0)
-		return (0);
-	if (is_valid_path(game, row + 1, col) == 0)
-		return (0);
-	if (is_valid_path(game, row, col - 1) == 0)
-		return (0);
-	if (is_valid_path(game, row, col + 1) == 0)
-		return (0);
-	return (1);
+	is_valid_path(game, row - 1, col);
+	is_valid_path(game, row + 1, col);
+	is_valid_path(game, row, col - 1);
+	is_valid_path(game, row, col + 1);
 }
 
 int	copy_map(t_game *game, t_game *copy_game)
@@ -85,7 +78,7 @@ int	solve_map(t_game *game)
 {
 	int		row;
 	int		col;
-	int		res;
+	int		visited;
 	t_game	*new_game;
 
 	row = game->start.row;
@@ -93,6 +86,9 @@ int	solve_map(t_game *game)
 	new_game = copy_game(game);
 	if (!new_game)
 		return (free_game(new_game), 1);
-	res = is_valid_path(new_game, row, col, game->collectible);
-	return (free_game(new_game), res);
+	is_valid_path(new_game, row, col);
+	visited = check_visited(new_game->collect);
+	if (visited == 0 && new_game->map[game->end.row][game->end.col] == '2')
+		return (free_game(new_game), 0);
+	return (free_game(new_game), 1);
 }
