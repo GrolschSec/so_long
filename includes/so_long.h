@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:24:11 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/21 20:14:05 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:17:27 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,32 @@
 # include "../mlx/mlx_int.h"
 # include "../ft/libft.h"
 # include "../gnl/get_next_line.h"
-
 // Structs
-typedef struct	s_point
+typedef struct s_point
 {
 	int	row;
 	int	col;
 }				t_point;
 
-typedef struct			s_collect
+typedef struct s_collect
 {
 	t_point				loc;
 	int					visited;
 	struct s_collect	*next;
 }						t_collect;
 
-typedef struct	s_game
+typedef struct s_game
 {
-    char		**map;
-    int			rows;
-    int			cols;
+	char		**map;
+	int			rows;
+	int			cols;
 	int			collectible;
 	t_collect	*collect;
-    t_point		start;
-    t_point		end;
+	t_point		start;
+	t_point		end;
 }				t_game;
 // main.c
+void			so_long(t_game *game);
 // map_check_1.c
 int				filename_check(char *filename);
 char			**load_map(char	*filename);
