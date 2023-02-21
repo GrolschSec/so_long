@@ -6,12 +6,11 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 16:16:47 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/21 18:42:43 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/21 19:05:23 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
 
 int	is_valid_path(t_game *game, int row, int col)
 {
@@ -41,7 +40,7 @@ int	copy_map(t_game *game, t_game *copy_game)
 {
 	int	row;
 	int	col;
-	
+
 	copy_game->map = (char **)malloc(sizeof(char *) * (game->rows + 1));
 	if (!copy_game->map)
 		return (1);
@@ -95,5 +94,5 @@ int	solve_map(t_game *game)
 	if (!new_game)
 		return (free_game(new_game), 1);
 	res = is_valid_path(new_game, row, col, game->collectible);
-	return(free_game(new_game), res);
+	return (free_game(new_game), res);
 }

@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:09:25 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/21 17:54:32 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/21 19:02:45 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ void	add_node(t_collect *head, int row, int col, t_game *game)
 	}
 }
 
-
 void	copy_collect(t_collect *head, t_game *game)
 {
-    while (head != NULL)
-    {
-        add_node(NULL, head->loc.row, head->loc.col, game);
+	while (head != NULL)
+	{
+		add_node(NULL, head->loc.row, head->loc.col, game);
 		head = head->next;
-    }
+	}
 }
