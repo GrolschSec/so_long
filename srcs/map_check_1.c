@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 09:03:20 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/21 19:04:24 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/23 13:47:17 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,12 @@ char	**load_map(char	*filename)
 
 void	free_game(t_game *game)
 {
-	t_collect	*tmp;
-
-	tmp = NULL;
 	if (!game)
 		return ;
 	if (game->map)
 		ft_free_tab(game->map);
 	if (game->collect)
-	{
-		while (game->collect)
-		{
-			tmp = game->collect;
-			game->collect = game->collect->next;
-			free(tmp);
-			tmp = NULL;
-		}
-	}
+		free_collect(game->collect);
 	free(game);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:23:59 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/21 22:13:14 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/23 12:38:18 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ int	main(int argc, char **argv)
 	game = validate_map(map);
 	if (!game)
 		return (free_game(game), ft_putstr_fd("Error\n4", 0), 5);
-	so_long(game);
+	//so_long(game);
 	return (free_game(game), 0);
-}
-
-void	so_long(t_game *game);
-{
-	
 }

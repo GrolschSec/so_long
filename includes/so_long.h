@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:24:11 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/21 22:17:27 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/23 13:46:41 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,5 @@ void			add_node(t_collect *head, int row, int col, t_game *game);
 void			copy_collect(t_collect *head, t_game *game);
 void			set_visited(t_collect *head, int row, int col);
 int				check_visited(t_collect *head);
+void			free_collect(t_collect *head);
 #endif
