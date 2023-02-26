@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:24:11 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/23 13:46:41 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/26 19:09:42 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_collect
 	t_point				loc;
 	int					visited;
 	struct s_collect	*next;
-}						t_collect;
+}				t_collect;
 
 typedef struct s_game
 {
@@ -40,6 +40,16 @@ typedef struct s_game
 	t_point		start;
 	t_point		end;
 }				t_game;
+
+typedef struct s_view
+{
+	int		game_height;
+	int		game_width;
+	void	*mlx_ptr;
+	void	*mlx_win;
+	t_img	imgs[10];
+}				t_view;
+
 // main.c
 void			so_long(t_game *game);
 // map_check_1.c
@@ -69,4 +79,12 @@ void			copy_collect(t_collect *head, t_game *game);
 void			set_visited(t_collect *head, int row, int col);
 int				check_visited(t_collect *head);
 void			free_collect(t_collect *head);
+// game_1.c
+t_view			*init_view(void);
+int				load_images(t_view *view);
+void			free_view(t_view *view);
+void			destroy_images(t_view *view);
+// game_2.c
+int				image_to_win_init(int row, int col, char c, t_view *view);
+int				map_to_view(t_game *game, t_view *view);
 #endif

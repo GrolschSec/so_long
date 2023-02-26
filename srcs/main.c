@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:23:59 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/23 12:38:18 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/26 19:09:06 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,38 @@ int	main(int argc, char **argv)
 	t_game	*game;
 
 	if (argc != 2)
-		return (ft_putstr_fd("Error\n1", 0), 1);
+		return (ft_putstr_fd("Error\nNo argument.\n", 0), 1);
 	if (filename_check(argv[1]) != 0)
-		return (ft_putstr_fd("Error\n2", 0), 2);
+		return (ft_putstr_fd("Error\nFile isn't a '.ber'.\n", 0), 2);
 	map = load_map(argv[1]);
 	if (!map)
-		return (ft_putstr_fd("Error\n3", 0), 3);
+		return (ft_putstr_fd("Error\nCannot load map.\n", 0), 3);
 	game = validate_map(map);
 	if (!game)
-		return (free_game(game), ft_putstr_fd("Error\n4", 0), 5);
-	//so_long(game);
-	return (free_game(game), 0);
+		return (free_game(game), ft_putstr_fd("Error\nInvalid map.\n", 0), 4);
+	so_long(game);
+	return (0);
+}
+
+void	so_long(t_game *game)
+{
+	t_view	*view;
+
+	view = init_view();
+	if (!view)
+	{
+		ft_putstr_fd("Error\nCannot initialize the game.\n", 0);
+		free_game(game);
+		exit(5);
+	}
+	view->game_height = game->rows * view->imgs[0].height;
+	view->game_width = game->cols * view->imgs[0].width;
+	if (map_to_view(game, view) != 0)
+	{
+		ft_putstr_fd("Error\nCannot initialize the window.\n", 0);
+		free_game(game);
+		free_view(view);
+		exit(6);
+	}
+	return (free_game(game), free_view(view));
 }
