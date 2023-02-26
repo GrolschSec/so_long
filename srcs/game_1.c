@@ -6,13 +6,13 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:33:49 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/26 18:35:21 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/26 21:24:02 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-t_view	*init_view(void)
+t_view	*init_view(t_game *game)
 {
 	t_view	*view;
 
@@ -25,6 +25,9 @@ t_view	*init_view(void)
 		return (free(view), NULL);
 	if (load_images(view) != 0)
 		return (free_view(view), NULL);
+	view->game = game;
+	view->game_height = game->rows * view->imgs[0].height;
+	view->game_width = game->cols * view->imgs[0].width;
 	return (view);
 }
 
@@ -48,9 +51,11 @@ void	free_view(t_view *view)
 {
 	if (view)
 	{
-		destroy_images(view);
 		if (view->mlx_win)
 			mlx_destroy_window(view->mlx_ptr, view->mlx_win);
+		destroy_images(view);
+		if (view->game)
+			free_game(view->game);
 		if (view->mlx_ptr)
 			mlx_destroy_display(view->mlx_ptr);
 		free(view->mlx_ptr);

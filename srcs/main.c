@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:23:59 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/26 19:09:06 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/26 21:26:06 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,20 @@ void	so_long(t_game *game)
 {
 	t_view	*view;
 
-	view = init_view();
+	view = init_view(game);
 	if (!view)
 	{
 		ft_putstr_fd("Error\nCannot initialize the game.\n", 0);
 		free_game(game);
 		exit(5);
 	}
-	view->game_height = game->rows * view->imgs[0].height;
-	view->game_width = game->cols * view->imgs[0].width;
 	if (map_to_view(game, view) != 0)
 	{
 		ft_putstr_fd("Error\nCannot initialize the window.\n", 0);
-		free_game(game);
 		free_view(view);
 		exit(6);
 	}
-	return (free_game(game), free_view(view));
+	events(view);
+	mlx_loop(view->mlx_ptr);
+	return ;
 }

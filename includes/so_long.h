@@ -6,12 +6,17 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:24:11 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/26 19:09:42 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/26 21:44:15 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+# define ESC_KEY 65307
+# define W_KEY 119
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
 # include "../mlx/mlx.h"
 # include "../mlx/mlx_int.h"
 # include "../ft/libft.h"
@@ -48,6 +53,7 @@ typedef struct s_view
 	void	*mlx_ptr;
 	void	*mlx_win;
 	t_img	imgs[10];
+	t_game	*game;
 }				t_view;
 
 // main.c
@@ -80,11 +86,14 @@ void			set_visited(t_collect *head, int row, int col);
 int				check_visited(t_collect *head);
 void			free_collect(t_collect *head);
 // game_1.c
-t_view			*init_view(void);
+t_view			*init_view(t_game *game);
 int				load_images(t_view *view);
 void			free_view(t_view *view);
 void			destroy_images(t_view *view);
 // game_2.c
 int				image_to_win_init(int row, int col, char c, t_view *view);
 int				map_to_view(t_game *game, t_view *view);
+int				handle_event(int keycode, t_view *view);
+int				close_window(t_view *view);
+void			events(t_view *view);
 #endif
