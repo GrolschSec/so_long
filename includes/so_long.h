@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:24:11 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/26 21:44:15 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/26 21:53:05 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void			destroy_images(t_view *view);
 // game_2.c
 int				image_to_win_init(int row, int col, char c, t_view *view);
 int				map_to_view(t_game *game, t_view *view);
+// events.c
 int				handle_event(int keycode, t_view *view);
 int				close_window(t_view *view);
 void			events(t_view *view);
