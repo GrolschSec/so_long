@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 08:43:51 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/27 11:33:43 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:34:46 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	move_player_up(t_view *view)
 	if (view->game->map[n_pos_row][view->player_pos.col] != '1')
 	{
 		if (view->game->map[n_pos_row][view->player_pos.col] == 'C')
-			set_visited(view->game->collect, view->player_pos.row, n_pos_row);
+			set_visited(view->game->collect, n_pos_row, view->player_pos.col);
 		view->game->map[view->player_pos.row][view->player_pos.col] = '0';
 		view->game->map[n_pos_row][view->player_pos.col] = 'P';
 		view->player_pos.row = n_pos_row;
@@ -71,7 +71,7 @@ void	move_player_down(t_view *view)
 	if (view->game->map[n_pos_row][view->player_pos.col] != '1')
 	{
 		if (view->game->map[n_pos_row][view->player_pos.col] == 'C')
-			set_visited(view->game->collect, view->player_pos.row, n_pos_row);
+			set_visited(view->game->collect, n_pos_row, view->player_pos.col);
 		view->game->map[view->player_pos.row][view->player_pos.col] = '0';
 		view->game->map[n_pos_row][view->player_pos.col] = 'P';
 		view->player_pos.row = n_pos_row;
