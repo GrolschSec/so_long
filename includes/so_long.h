@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:24:11 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/26 21:53:05 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:10:58 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct s_view
 	void	*mlx_win;
 	t_img	imgs[10];
 	t_game	*game;
+	t_point	player_pos;
+	int		player_mov;
 }				t_view;
 
 // main.c
@@ -91,8 +93,16 @@ int				load_images(t_view *view);
 void			free_view(t_view *view);
 void			destroy_images(t_view *view);
 // game_2.c
-int				image_to_win_init(int row, int col, char c, t_view *view);
-int				map_to_view(t_game *game, t_view *view);
+int				image_to_win_init(t_point pos, char c, t_view *view, char dir);
+int				map_to_view(t_view *view, char dir);
+void			set_player_view(t_point pos, t_view *view, char dir);
+void			set_end_view(t_point pos, t_view *view);
+// game_3.c
+void			move_player_right(t_view *view);
+void			move_player_left(t_view *view);
+void			move_player_up(t_view *view);
+void			move_player_down(t_view *view);
+void			print_move_count(int player_mov);
 // events.c
 int				handle_event(int keycode, t_view *view);
 int				close_window(t_view *view);

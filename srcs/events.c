@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 21:52:33 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/26 21:52:49 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/27 09:26:42 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,18 @@ int	handle_event(int keycode, t_view *view)
 {
 	if (keycode == ESC_KEY)
 		close_window(view);
+	else if (view->player_pos.col == view->game->end.col
+		&& view->player_pos.row == view->game->end.row
+		&& check_visited(view->game->collect) == 0)
+		return (0);
 	else if (keycode == W_KEY)
-		ft_putstr_fd("Hi", 0);
+		move_player_up(view);
 	else if (keycode == A_KEY)
-		ft_putstr_fd("Oh", 0);
+		move_player_left(view);
 	else if (keycode == S_KEY)
-		ft_putstr_fd("Ah", 0);
+		move_player_down(view);
 	else if (keycode == D_KEY)
-		ft_putstr_fd("wazah", 0);
+		move_player_right(view);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:33:49 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/26 21:24:02 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/27 10:34:45 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,14 @@ t_view	*init_view(t_game *game)
 	if (load_images(view) != 0)
 		return (free_view(view), NULL);
 	view->game = game;
+	view->player_pos = game->start;
+	view->player_mov = 0;
 	view->game_height = game->rows * view->imgs[0].height;
 	view->game_width = game->cols * view->imgs[0].width;
+	view->mlx_win = mlx_new_window(view->mlx_ptr,
+			view->game_width, view->game_height, "So_long");
+	if (!view->mlx_win)
+		return (free_view(view), NULL);
 	return (view);
 }
 

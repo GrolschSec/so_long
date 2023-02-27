@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:23:59 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/26 21:26:06 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/02/27 10:59:36 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	so_long(t_game *game)
 		free_game(game);
 		exit(5);
 	}
-	if (map_to_view(game, view) != 0)
+	if (map_to_view(view, 'D') != 0)
 	{
 		ft_putstr_fd("Error\nCannot initialize the window.\n", 0);
 		free_view(view);
@@ -50,5 +50,4 @@ void	so_long(t_game *game)
 	}
 	events(view);
 	mlx_loop(view->mlx_ptr);
-	return ;
 }
