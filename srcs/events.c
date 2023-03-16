@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 21:52:33 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/27 09:26:42 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:55:10 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ int	handle_event(int keycode, t_view *view)
 
 int	close_window(t_view *view)
 {
-	free_view(view);
+	free_view(view, 0);
 	exit(0);
 }

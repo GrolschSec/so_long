@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:23:59 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/27 10:59:36 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:54:44 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	so_long(t_game *game)
 	if (map_to_view(view, 'D') != 0)
 	{
 		ft_putstr_fd("Error\nCannot initialize the window.\n", 0);
-		free_view(view);
+		free_view(view, 0);
 		exit(6);
 	}
 	events(view);

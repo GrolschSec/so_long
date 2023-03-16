@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 08:24:11 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/27 13:29:58 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:50:11 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ void			free_collect(t_collect *head);
 // game_1.c
 t_view			*init_view(t_game *game);
 int				load_images(t_view *view);
-void			free_view(t_view *view);
-void			destroy_images(t_view *view);
+void			free_view(t_view *view, int img_ret);
+void			destroy_images(t_view *view, int img_ret);
 // game_2.c
 int				image_to_win_init(t_point pos, char c, t_view *view, char dir);
 int				map_to_view(t_view *view, char dir);
