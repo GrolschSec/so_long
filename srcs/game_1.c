@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:33:49 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/03/16 14:51:34 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/03/16 15:13:12 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_view	*init_view(t_game *game)
 void	destroy_images(t_view *view, int img_ret)
 {
 	int	i;
-	int len;
+	int	len;
 
 	if (img_ret != 0)
 		len = img_ret;
@@ -61,7 +61,7 @@ void	destroy_images(t_view *view, int img_ret)
 	}
 }
 
-void	free_view(t_view *view, int	img_ret)
+void	free_view(t_view *view, int img_ret)
 {
 	if (view)
 	{
