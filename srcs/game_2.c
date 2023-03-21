@@ -6,7 +6,7 @@
 /*   By: rlouvrie <rlouvrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:30:46 by rlouvrie          #+#    #+#             */
-/*   Updated: 2023/02/27 13:33:10 by rlouvrie         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:50:13 by rlouvrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,14 @@ int	image_to_win_init(t_point pos, char c, t_view *view, char dir)
 			view->imgs[7].data, pos.col * view->imgs[7].width,
 			pos.row * view->imgs[7].height);
 	else if (c == '0')
-		mlx_put_image_to_window(view->mlx_ptr, view->mlx_win,
-			view->imgs[9].data, pos.col * view->imgs[9].width,
-			pos.row * view->imgs[9].height);
+	{
+		if (pos.col == view->game->end.col && pos.row == view->game->end.row)
+			set_end_view(pos, view);
+		else
+			mlx_put_image_to_window(view->mlx_ptr, view->mlx_win,
+				view->imgs[9].data, pos.col * view->imgs[9].width,
+				pos.row * view->imgs[9].height);
+	}
 	return (0);
 }
 
